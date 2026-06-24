@@ -1,0 +1,313 @@
+---
+const projects = [
+    /*p1 = {
+        name: "Dra. Nayira García Siso | Cirujano plástico",
+        subtitle: "Personal website for Dr. Nayira Garcia Siso, Plastic Surgeon",
+        preview: "p6.png",
+        github: "",
+        demo: "",
+        technologies: ["HTML", "CSS", "JavaScript", "Vuejs"],
+    },*/
+    {
+        name: "Manservind C.A.",
+        subtitle: "Landing page",
+        preview: "p1.png",
+        github: "",
+        demo: "https://manservind.com/",
+        technologies: ["Astro", "CSS", "JavaScript"],
+    },
+    {
+        name: "Venetasas",
+        subtitle: "Venezuelan currency exchange rates calculator",
+        preview: "p3.png",
+        github: "",
+        demo: "http://venetasas.netlify.app/",
+        technologies: ["Vuejs", "Bootstrap"],
+    },
+    {
+        name: "Tetris",
+        subtitle: "Tetris Classic in JS",
+        preview: "p6.png",
+        github: "https://github.com/SindromeDeLuis/tetris-classic-js",
+        demo: "https://tetris-classic-js.netlify.app/",
+        technologies: ["HTML", "CSS", "JavaScript"],
+    },
+    {
+        name: "Beatrice: Chatbot for English Practice",
+        subtitle: "WebApp with chatbot to improve English",
+        preview: "p4.png",
+        github: "https://github.com/SindromeDeLuis/betricebot",
+        demo: "https://beatricebot.onrender.com/",
+        technologies: ["HTML", "CSS", "Nodejs", "Expressjs", "MongoDB", "Dialogflow ES"],
+    },
+    {
+        name: "Gestor de Trabajos de Grado",
+        subtitle: "Degree Thesis Manager for the José Antonio Páez University",
+        preview: "p5.png",
+        github: "https://github.com/SindromeDeLuis/gestor-tesis-ujap",
+        demo: "https://www.flipsnack.com/BEBBD966AED/new-flipbook.html",
+        technologies: ["Vuejs", "Bootstrap", "PHP", "Laravel", "MySQL"],
+    },
+    {
+        name: "E-commerce",
+        subtitle: "Template",
+        preview: "p2.png",
+        github: "https://github.com/SindromeDeLuis/E-commerce",
+        demo: "https://sindromedeluis.github.io/E-commerce/",
+        technologies: ["HTML", "CSS", "JavaScript"],
+    }
+]
+
+const projectsPath = "/images/projects/"
+---
+
+<script>
+
+const images = document.querySelectorAll<HTMLImageElement>(".project img")
+const descriptions = document.querySelectorAll<HTMLElement>(".project .description")
+
+images.forEach((img, i) => {
+    img.addEventListener("click", () => {
+        descriptions[i].classList.toggle("show");
+    });
+});
+
+
+const projectShow = document.querySelectorAll<HTMLElement>(".project .show");
+
+projectShow.forEach((p, i) => {
+    p.addEventListener("mouseover", () => {
+        p.style.top = `-${descriptions[i].offsetHeight}px`
+    });
+});
+</script>
+
+<section class="section portfolio" id="projects">
+  <h2>PROJECTS</h2>
+  <p>My recent work</p>
+  <div class="portfolio-container">
+    <div class="gallery" id="projects-gallery">
+      {projects.map((project) => (
+      <article class="project">
+        <div class="show">
+          <img src={`${projectsPath + project.preview}`} alt={project.name} loading="lazy" id="project-image">
+            <div class="description">
+              <h3 id="project-name">{project.name}</h3>
+              <p id="project-subtitle">{project.subtitle}</p>
+              <ul id="project-technologies">
+                {project.technologies.map((technology) => (
+                  <li id={`${technology.toLowerCase()}`}>{technology}</li>
+                ))}
+              </ul>
+              <div class="links" id="links">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" id="url"><i class="fa-brands fa-github"></i></a>
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" id="url2"><i class="fa-solid fa-globe"></i></a>
+              </div>
+            </div>
+        </div>
+      </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+        .portfolio > p {
+            text-align: center; 
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .portfolio .portfolio-container {
+            max-width: 1366px;
+            height: 100%;
+            margin: 2vh 0;
+        }
+        .portfolio .portfolio-container .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100%;
+        }
+            .portfolio .portfolio-container .gallery .project {
+                position: relative;
+                flex: 1 1 100%;
+                max-width: 22vw;
+                height: fit-content;
+                margin: 0 15px;
+                cursor: pointer;
+            }
+                .portfolio .portfolio-container .gallery .project a {
+                    text-decoration: none;
+                }
+                .portfolio .portfolio-container .gallery .project .show img {
+                    width: 100%;
+                    display: block;
+                    border-radius: 24px;
+                    min-height: 180px;
+                    transition: 0.3s;
+                }
+                .portfolio .portfolio-container .gallery .project .show .description {
+                    display: flex;
+                    position: absolute;
+                    z-index: 1;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: space-around;
+                    background-color: #252A2E;
+                    border: 1px solid #3f3f3f;
+                    min-height: 24vh;  
+                    width: 100%;
+                    padding: 16px 12px;
+                    border-top: 0;
+                    border-bottom-left-radius: 24px;
+                    border-bottom-right-radius: 24px;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: visibility 0.3s linear,opacity 0.3s linear;
+                }
+                    .portfolio .portfolio-container .gallery .project .description h3 {
+                        display: flex;
+                        align-items: center;
+                        height: 30%;
+                    }
+                    .portfolio .portfolio-container .gallery .project .description p,
+                    .portfolio .portfolio-container .gallery .project .description ul,
+                    .portfolio .portfolio-container .gallery .project .description .links {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        justify-content: center;
+                        height: 20%;
+                        margin-top: 16px;
+                    }
+
+                        .portfolio .portfolio-container .gallery .project .description ul li {
+                            display: flex;
+                            font-size: 14px;
+                            font-weight:600;
+                            margin: 4px 4px;
+                            padding: 4px 8px;
+                            border-radius: 12px;
+                        }
+                            .portfolio .portfolio-container .gallery .project .description ul li#html {
+                                background: orangered;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#css {
+                                background: dodgerblue;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#javascript {
+                                background: yellow;
+                                color: #252A2E;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#nodejs {
+                                background: #036e01;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#expressjs {
+                                background: transparent;
+                                border: 2px solid;
+                                padding: 2px 8px;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#mongodb {
+                                background: #4caf50;
+                                color: #252A2E;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#dialogflow\ es {
+                                background: #fe9900;
+                                color: #252A2E;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#php {
+                                background: #8892be;
+                                color: #252A2E
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#laravel {
+                                background: #fe2c21;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#vuejs {
+                                background: #81c784;
+                                color: #455a64;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#bootstrap {
+                                background: #7610f6;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#mysql {
+                                background: #e2dfde;
+                                color: #fe9900;
+                            }
+                            .portfolio .portfolio-container .gallery .project .description ul li#astro {
+                                background: #3d4dfff0;
+                                color: #ffffff;
+                            }
+                        .portfolio .portfolio-container .gallery .project .description .links a {
+                            font-size: 20px;
+                            width: 36px;
+                            height: 36px;
+                            line-height: 35px;
+                            margin: 0 4px;
+                        }
+                .portfolio .portfolio-container .gallery .project .show:hover img {
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    transition: 0.25s;
+                }
+                .portfolio .portfolio-container .gallery .project .show:hover .description {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: visibility 0.25s linear,opacity 0.25s linear;
+                }
+    
+
+@media screen and (min-width:1024px){
+    .portfolio .portfolio-container .gallery .project:nth-child(n+4) {
+        margin-top: 20px;
+    }
+    .portfolio .portfolio-container .gallery .project:nth-child(n+4) .show {
+        transition: 0.9s;
+    }
+    .portfolio .portfolio-container .gallery .project:nth-child(n+4) .show:hover {
+        position: relative;
+        /*top: -24dvh;*/
+        transition: 0.7s;
+    }
+}
+
+/* Large devices (laptops/desktops, 1024px and down) */
+@media screen and (max-width:1024px){
+    .portfolio .portfolio-container .gallery .project .show img {
+        min-height: auto;
+    }
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media screen and (max-width:768px){
+  .portfolio {
+        height: 100%;
+        padding: 20px;
+    }
+        .portfolio .portfolio-container .gallery{
+            width: 100%;
+        }
+        .portfolio .portfolio-container .gallery .project{
+            max-width: 70vw;
+            margin-bottom: 20px;
+        }
+        .portfolio .portfolio-container .gallery .project .show img{
+            width: 100%;
+        }
+            .portfolio .portfolio-container .gallery .project .description h3 {
+                font-size: 24px;
+            }
+            .portfolio .portfolio-container .gallery .project .description p,
+            .portfolio .portfolio-container .gallery .project .description ul li {
+                font-size: 20px;
+            }
+}
+
+/* Small devices (phones, 480px and down) */
+@media screen and (max-width:480px){
+    .portfolio .portfolio-container .gallery .project{
+        max-width: 100%;
+    }
+}
+</style>

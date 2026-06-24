@@ -1,0 +1,105 @@
+---
+const skills = [
+    {
+        name: "HTML",
+        icon: "html.svg",
+    },
+    {
+        name: "CSS",
+        icon: "css.svg",
+    },
+    {
+        name: "JavaScript",
+        icon: "javascript.svg",
+    },
+    {
+        name: "Bootstrap",
+        icon: "bootstrap.svg",
+    },
+    {
+        name: "Tailwind CSS",
+        icon: "tailwindcss.svg",
+    },
+    {
+        name: "Vue.js",
+        icon: "vuejs.svg",
+    },
+    {
+        name: "Supabase",
+        icon: "supabase.svg",
+    },
+    {
+        name: "Git",
+        icon: "git.svg",
+    },
+];
+
+const skillsPath = "/images/skills/";
+---
+
+<article class="skills">
+  <div class="skills-container">
+    <ul class="gallery2" id="skills-gallery">
+      {skills.map((skill) => (
+        <li class="skill">
+          <img src={skillsPath + skill.icon} alt={skill.name} title={skill.name} loading="lazy" id="skill-image" />
+        </li>
+      ))}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .skills {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      grid-column: 2 / 4;
+      grid-row: 3;
+      max-width: 60dvw;
+      color: #fff;
+  }
+          .skills .skills-container .gallery2 {
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              justify-content: space-evenly;
+          }
+              .skills .skills-container .gallery2 .skill {
+                  position: relative;
+                  flex: 1 1 100%;
+                  max-width: 12%;
+                  list-style: none;
+                  background-color: #252A2E;
+                  border-radius: 24px;
+                  border: 1px solid #3f3f3f;
+                  align-content: center;
+              }
+                  .skills .skills-container .gallery2 .skill img {
+                      width: 100%;
+                      display: block;
+                      transition: .5s;
+                  }
+                  .skills .skills-container .gallery2 .skill:hover img {
+                      transform: scale(1.3);
+                      transition: .5s;
+                  }
+  
+  /* Medium devices (tablets, 768px and down) */
+  @media screen and (max-width:768px){    
+    .skills {
+        max-width: unset;
+        width: 100%;
+    }   
+    .skills .skills-container .gallery2{
+        width: 100%;
+    }
+    .skills .skills-container .gallery2 .skill{
+        max-width: 28%;
+        margin-bottom: 20px;
+    }
+    .skills .skills-container .gallery2 .skill img{
+        width: 100%;
+    }
+  }
+</style>

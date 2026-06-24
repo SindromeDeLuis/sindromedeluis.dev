@@ -1,0 +1,32 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <p>&copy; {currentYear} <strong>SindromeDeLuis</strong>. Todos los derechos reservados.</p>
+
+    <p>Build with Astro.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    color: white;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+  
+  @media (max-width: 580px) {
+    .footer-container {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,121 @@
+---
+import Skills from './Skills.astro';
+---
+
+<section class="section home" id="about">
+  <div class="home-container">
+    <article class="profile-card">
+      <div class="img-container">
+        <img src="images/profile.jpeg" alt="">
+      </div>
+      <h1>Luis A Sandoval</h1>
+      <p class="nick">@SindromeDeLuis</p>
+      <h2>Software Developer</h2>
+      <p class="location"><i class="fa-solid fa-location-dot"></i> Venezuela</p>
+      <div class="rrss">
+        <a href="https://github.com/SindromeDeLuis" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sindromedeluis" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://drive.google.com/file/d/1-BquO7V9JYjSxFJ50EnRC5LTR--lBnF6/view" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-lines"></i></a>
+      </div>
+    </article>
+
+    <article class="about">
+      <p>Software engineer with experience in back-end and front-end web development. I manage the Node.js stack, Express, Vue.js and MongoDB, however, I am familiar with other technologies such as Java, PHP/Laravel and MySQL.</p>
+      <p>I have 4 years of experience creating freelance projects, I have a solid knowledge of web design and development principles, and I am committed to creating high quality applications that meet the needs of my clients.</p>
+    </article>
+
+    <Skills />
+  </div>
+</section>
+
+<style>
+  .home {
+  }
+      .home .home-container {
+          display: grid;
+          place-content: center;
+          grid-template-columns: repeat(3, 1fr);
+          width: 100%;
+          max-width: 1366px;
+      }
+      .home .home-container .profile-card {
+          background-color: #252A2E;
+          max-width: 350px;
+          text-align: center;
+          padding: 20px;
+          margin: auto;
+          border-radius: 24px;
+          grid-column: 1;
+          grid-row: 1 / 4;
+          border: 1px solid #3f3f3f;
+      }
+          .profile-card img {
+              margin-top: 40px;
+              border: 5px solid #b81414;
+              display: block;
+              width: 80%;
+              margin: auto;
+              border-radius: 100%;
+          }
+          .profile-card h1 {
+              margin-bottom: 3px;
+          }
+          .profile-card h2 {
+              font-size: 20px;
+              font-weight: normal;
+              margin-bottom: 8px;
+              padding: 0;
+          }
+          .profile-card .nick {
+              font-size: 16px;
+              font-weight: normal;
+              margin-bottom: 8px;
+              color: #8C96A5;
+          }
+      .home .home-container .about {
+          display: flex;
+          flex-flow: column wrap;
+          justify-content: center;
+          grid-column: 2 / 4;
+          grid-row: 1 / 3;
+          max-width: 60dvw;
+      }
+          .about > p {
+              margin-bottom: 20px;
+              font-size: 20px;
+              line-height: 1.5;
+          }
+
+  /* Medium devices (tablets, 768px and down) */
+  @media screen and (max-width:768px){    
+    .home {
+      height: 100%;
+    }
+    .home .home-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px; 
+      width: 100%;
+    }
+    .home .home-container .profile-card,
+    .home .home-container .about,
+    .home .home-container .skills {
+      grid-column: unset !important;
+      grid-row: unset !important;
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .about p {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+  }
+
+/* Small devices (phones, 480px and down) */
+  @media screen and (max-width:480px){
+    .home .home-container .about {
+        display: none;
+    }
+  }
+</style>

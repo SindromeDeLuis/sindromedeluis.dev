@@ -1,0 +1,76 @@
+<section class="section contact" id="contact">
+  <h2>CONTACT</h2>
+  <div class="contact-container">
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="text" name="name" placeholder="Name" id="name" required>
+      <input type="text" name="email" placeholder="Email Address" id="email" required>
+      <input type="text" name="subject" placeholder="Subject" id="subject" required>
+      <textarea name="message" id="message" cols="28" rows="5" placeholder="Message" required></textarea>
+      
+      <button type="submit">
+          Send <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</section>
+
+<style>
+      .contact .contact-container{
+          flex: 1 1 100%;
+          max-width: 780px;
+          margin: 0 auto;
+          width: 100%;
+      }
+          .contact input,
+          .contact textarea{
+              display: block;
+              width: 100%;
+              padding: 18px;
+              border: none;
+              margin-bottom: 20px;
+              background-color: #252A2E;
+              color: #fff;
+              font-size: 18px;
+              border: 1px solid #3f3f3f;
+              box-sizing: border-box;
+          }
+          .contact input:focus-visible,
+          .contact textarea:focus-visible {
+              outline:rgba(184, 20, 20, 0.7) solid 2px; 
+              border-radius: 2px;
+          }
+          .contact button {
+              cursor: pointer;
+              background-color: #252A2E;              
+              border: 1px solid #ffffff;
+              width: fit-content;
+              display: block;
+              margin: 20px auto;
+              padding: 10px 22px;
+              font-size: 16px;
+              color: #fff;
+              border-radius: 6px;
+              position: relative;
+              z-index: 10;
+              transition: .5s;
+          }
+          .contact button:hover {
+              background-color: #b81414;
+          }
+  /* Medium devices (tablets, 768px and down) */
+  @media screen and (max-width:768px){
+    .contact {
+        padding: 20px;
+    }
+  }
+
+  /* Small devices (phones, 480px and down) */
+  @media screen and (max-width:480px){
+    .contact {
+        height: 100%;
+    }
+        .contact .contact-container {
+            margin: 0;
+        }
+  }
+</style>

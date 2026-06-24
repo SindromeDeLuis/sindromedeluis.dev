@@ -1,0 +1,8 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+Disallow: /_astro/
+Disallow: /node_modules/
+
+Sitemap: https://sindromedeluis.dev/sitemap-index.xml

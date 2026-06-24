@@ -1,0 +1,138 @@
+<header class="header">
+  <div class="nav-icon">
+    <i class="fa-solid fa-bars"></i>
+    <i class="fa-solid fa-xmark hide"></i>
+  </div>
+
+  <div class="logo">
+    <a href="#"></a>
+  </div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about"><i class="fas fa-user"></i> ABOUT</a></li>
+      <li><a href="#experience"><i class="fas fa-gear"></i> EXPERIENCE</a></li>
+      <li><a href="#projects"><i class="fas fa-suitcase"></i> PROJECTS</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+const navIcon = document.querySelector(".nav-icon")
+const icons = document.querySelectorAll(".nav-icon i")
+const menu = document.querySelector(".navbar ul")
+const sections = document.querySelectorAll(".navbar ul li")
+
+if (navIcon) navIcon.addEventListener("click", showMenu);
+sections.forEach(section => section.addEventListener("click", showMenu));
+
+function showMenu() {
+    if (menu) menu.classList.toggle("show");
+    icons.forEach(icon => icon.classList.toggle("hide"))
+}
+</script>
+
+<style>
+  .header {
+        background: #1e1e1e80;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px 6vw;
+        margin: auto;
+        position: fixed;
+        z-index: 99;
+    }
+        .header .nav-icon {
+             display: none;
+        }
+
+        .header .logo a {
+            font-size: 28px;
+            color: #b81414;
+            text-decoration: none;
+        }
+        
+        .header .navbar {
+            display: flex;
+        }
+            .header .navbar ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+                .header .navbar ul li {
+                    position: relative;
+                    list-style: none;
+                }
+                    .header .navbar ul li a {
+                        padding: 8px 16px;
+                        border-radius: 4px;
+                        color: #fff;
+                        text-decoration: none;
+                        transition: .3s;
+                    }
+                        .header .navbar ul li a:hover {
+                            background: rgba(184, 20, 20, 0.7);
+                            transition: .5s;
+                        }
+    
+  /* Medium devices (tablets, 768px and down) */
+  @media screen and (max-width:768px){
+    .header .logo {
+        display: none;
+    }
+    .header .navbar {
+        font-size: 32px;
+    }
+        .header .navbar ul {
+            background-color: #252A2E;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: -100vw;
+            height: 100vh;
+            width: 100vw;
+            padding: 5vh 0 0 10px;
+            transition: 0.5s;
+        }
+            .header .navbar ul.show {
+                left: 0;
+            }
+            .header .navbar ul li {
+                border-bottom: 1px solid #fff;
+                padding: 10px 15px;
+                margin: 8px;
+            }
+                .header .navbar ul li:hover {
+                    border-bottom-color: #b81414;
+                }
+                .header .navbar ul li a i {
+                    display: none;
+                }
+    .header .nav-icon {
+        display: block;
+        color: #fff;
+        font-size: 1.5em;
+        cursor: pointer;
+        z-index: 99;
+        opacity: 1;
+    }
+        .header .nav-icon i {
+            position: absolute;
+            display: flex;
+            align-content: flex-start;
+        }
+            .header .nav-icon i:nth-child(2) {
+                font-size: 1.25em;
+            }
+        .header .nav-icon .hide {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.25s linear,opacity 0.25s linear;
+        }
+  }
+</style>
