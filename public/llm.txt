@@ -1,0 +1,38 @@
+# Luis Sandoval - Web Developer Portfolio
+
+Luis Sandoval is a full-stack web developer experienced in front-end and back-end development, specializing in modern JavaScript environments and web architectures.
+
+## Core Information
+- **Name:** Luis Sandoval
+- **Role:** Web Developer / Full-Stack Engineer
+- **Website:** https://sindromedeluis.dev
+- **Focus:** Building robust back-end APIs and responsive front-end applications.
+
+## Technical Skills
+
+### Frontend
+- Vue.js (MEVN Stack)
+- JavaScript (ES6+)
+- HTML5 / CSS3
+- Bootstrap
+- Tailwind CSS
+
+### Backend & Databases
+- Node.js
+- Express.js
+- MongoDB
+- PHP / Laravel
+- Java
+- MySQL
+
+### DevOps & Tools
+- Git / GitHub
+- Netlify
+
+## Main Sections & Structure
+- **Home:** Introduction and overview of professional profile.
+- **About:** Personal and professional background as a developer.
+- **Experience:** Professional trajectory and previous job positions.
+- **Projects:** Showcases of built web applications and codebases.
+- **Skills:** Detailed catalog of technologies used daily.
+- **Contact:** Form to get in touch for projects or employment opportunities.
