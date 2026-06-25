@@ -63,22 +63,33 @@ const projectsPath = "/images/projects/"
 
 <script>
 
-const images = document.querySelectorAll<HTMLImageElement>(".project img")
-const descriptions = document.querySelectorAll<HTMLElement>(".project .description")
+const projects = document.querySelectorAll('.project');
 
-images.forEach((img, i) => {
-    img.addEventListener("click", () => {
-        descriptions[i].classList.toggle("show");
+projects.forEach((project) => {
+const showCard = project.querySelector('.show');
+const description = project.querySelector('.description');
+
+if (showCard && description) {
+    // 2. Cada vez que el mouse entre a la tarjeta, calculamos el alto dinámico
+    showCard.addEventListener('mouseenter', () => {
+    const height = description.offsetHeight;
+    // 3. Inyectamos la altura exacta como una variable CSS
+    showCard.style.setProperty('--desc-height', `${height}px`);
     });
+}
 });
 
+const projectImages = document.querySelectorAll('.project img');
 
-const projectShow = document.querySelectorAll<HTMLElement>(".project .show");
-
-projectShow.forEach((p, i) => {
-    p.addEventListener("mouseover", () => {
-        p.style.top = `-${descriptions[i].offsetHeight}px`
-    });
+projectImages.forEach((img) => {
+  img.addEventListener("click", (e) => {
+    const card = e.target.closest('.project');
+    const description = card.querySelector('.description');
+    
+    if(description) {
+        description.classList.toggle('show');
+    }
+  });
 });
 </script>
 
@@ -101,11 +112,13 @@ projectShow.forEach((p, i) => {
               </ul>
               <div class="links">
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Visitar demo de ${project.name}`}>
                     <i class="fa-brands fa-github"></i>
                   </a>
                 )}
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" id="url2"><i class="fa-solid fa-globe"></i></a>
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label={`Visitar repositorio de ${project.name}`}>
+                  <i class="fa-solid fa-globe"></i>
+                </a>
               </div>
             </div>
         </div>
@@ -116,151 +129,160 @@ projectShow.forEach((p, i) => {
 </section>
 
 <style>
-        .portfolio > p {
-            text-align: center; 
-            font-size: 20px;
-            margin-bottom: 20px;
+    .portfolio > p {
+        text-align: center; 
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .portfolio .portfolio-container {
+        max-width: 1366px;
+        height: 100%;
+        margin: 2vh 0;
+    }
+    .portfolio .portfolio-container .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+        .portfolio .portfolio-container .gallery .project {
+            position: relative;
+            flex: 1 1 100%;
+            max-width: 22vw;
+            height: fit-content;
+            margin: 0 15px;
+            cursor: pointer;
         }
-        .portfolio .portfolio-container {
-            max-width: 1366px;
-            height: 100%;
-            margin: 2vh 0;
-        }
-        .portfolio .portfolio-container .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: center;
-            height: 100%;
-        }
-            .portfolio .portfolio-container .gallery .project {
-                position: relative;
-                flex: 1 1 100%;
-                max-width: 22vw;
-                height: fit-content;
-                margin: 0 15px;
-                cursor: pointer;
+            .portfolio .portfolio-container .gallery .project a {
+                text-decoration: none;
             }
-                .portfolio .portfolio-container .gallery .project a {
-                    text-decoration: none;
-                }
-                .portfolio .portfolio-container .gallery .project .show img {
-                    width: 100%;
-                    display: block;
-                    border-radius: 24px;
-                    min-height: 180px;
-                    transition: 0.3s;
-                }
-                .portfolio .portfolio-container .gallery .project .show .description {
+            .portfolio .portfolio-container .gallery .project .show img {
+                width: 100%;
+                display: block;
+                border-radius: 24px;
+                min-height: 180px;
+                transition: 0.3s;
+            }
+            .portfolio .portfolio-container .gallery .project .show .description {
+                display: flex;
+                position: absolute;
+                z-index: 1;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                justify-content: space-around;
+                background-color: #252A2E;
+                border: 1px solid #3f3f3f;
+                min-height: 24vh;  
+                width: 100%;
+                padding: 16px 12px;
+                border-top: 0;
+                border-bottom-left-radius: 24px;
+                border-bottom-right-radius: 24px;
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0.3s linear,opacity 0.3s linear;
+            }
+                .portfolio .portfolio-container .gallery .project .description h3 {
                     display: flex;
-                    position: absolute;
-                    z-index: 1;
-                    flex-direction: column;
                     align-items: center;
-                    text-align: center;
-                    justify-content: space-around;
-                    background-color: #252A2E;
-                    border: 1px solid #3f3f3f;
-                    min-height: 24vh;  
-                    width: 100%;
-                    padding: 16px 12px;
-                    border-top: 0;
-                    border-bottom-left-radius: 24px;
-                    border-bottom-right-radius: 24px;
-                    visibility: hidden;
-                    opacity: 0;
-                    transition: visibility 0.3s linear,opacity 0.3s linear;
+                    height: 30%;
                 }
-                    .portfolio .portfolio-container .gallery .project .description h3 {
-                        display: flex;
-                        align-items: center;
-                        height: 30%;
-                    }
-                    .portfolio .portfolio-container .gallery .project .description p,
-                    .portfolio .portfolio-container .gallery .project .description ul,
-                    .portfolio .portfolio-container .gallery .project .description .links {
-                        display: flex;
-                        flex-wrap: wrap;
-                        align-items: center;
-                        justify-content: center;
-                        height: 20%;
-                        margin-top: 16px;
-                    }
+                .portfolio .portfolio-container .gallery .project .description p,
+                .portfolio .portfolio-container .gallery .project .description ul,
+                .portfolio .portfolio-container .gallery .project .description .links {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    height: 20%;
+                    margin-top: 16px;
+                }
 
-                        .portfolio .portfolio-container .gallery .project .description ul li {
-                            display: flex;
-                            font-size: 14px;
-                            font-weight:600;
-                            margin: 4px 4px;
-                            padding: 4px 8px;
-                            border-radius: 12px;
+                    .portfolio .portfolio-container .gallery .project .description ul li {
+                        display: flex;
+                        font-size: 14px;
+                        font-weight:600;
+                        margin: 4px 4px;
+                        padding: 4px 8px;
+                        border-radius: 12px;
+                    }
+                        .portfolio .portfolio-container .gallery .project .description ul li#html {
+                            background: orangered;
                         }
-                            .portfolio .portfolio-container .gallery .project .description ul li#html {
-                                background: orangered;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#css {
-                                background: dodgerblue;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#javascript {
-                                background: yellow;
-                                color: #252A2E;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#nodejs {
-                                background: #036e01;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#expressjs {
-                                background: transparent;
-                                border: 2px solid;
-                                padding: 2px 8px;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#mongodb {
-                                background: #4caf50;
-                                color: #252A2E;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#dialogflow\ es {
-                                background: #fe9900;
-                                color: #252A2E;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#php {
-                                background: #8892be;
-                                color: #252A2E
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#laravel {
-                                background: #fe2c21;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#vuejs {
-                                background: #81c784;
-                                color: #455a64;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#bootstrap {
-                                background: #7610f6;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#mysql {
-                                background: #e2dfde;
-                                color: #fe9900;
-                            }
-                            .portfolio .portfolio-container .gallery .project .description ul li#astro {
-                                background: #3d4dfff0;
-                                color: #ffffff;
-                            }
-                        .portfolio .portfolio-container .gallery .project .description .links a {
-                            font-size: 20px;
-                            width: 36px;
-                            height: 36px;
-                            line-height: 35px;
-                            margin: 0 4px;
+                        .portfolio .portfolio-container .gallery .project .description ul li#css {
+                            background: dodgerblue;
                         }
-                .portfolio .portfolio-container .gallery .project .show:hover img {
-                    border-bottom-left-radius: 0;
-                    border-bottom-right-radius: 0;
-                    transition: 0.25s;
-                }
-                .portfolio .portfolio-container .gallery .project .show:hover .description,
-                .portfolio .portfolio-container .gallery .project .description.show {
-                    visibility: visible;
-                    opacity: 1;
-                    transition: visibility 0.25s linear,opacity 0.25s linear;
-                }
+                        .portfolio .portfolio-container .gallery .project .description ul li#javascript {
+                            background: yellow;
+                            color: #252A2E;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#nodejs {
+                            background: #036e01;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#expressjs {
+                            background: transparent;
+                            border: 2px solid;
+                            padding: 2px 8px;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#mongodb {
+                            background: #4caf50;
+                            color: #252A2E;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#dialogflow\ es {
+                            background: #fe9900;
+                            color: #252A2E;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#php {
+                            background: #8892be;
+                            color: #252A2E
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#laravel {
+                            background: #fe2c21;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#vuejs {
+                            background: #81c784;
+                            color: #455a64;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#bootstrap {
+                            background: #7610f6;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#mysql {
+                            background: #e2dfde;
+                            color: #fe9900;
+                        }
+                        .portfolio .portfolio-container .gallery .project .description ul li#astro {
+                            background: #3d4dfff0;
+                            color: #ffffff;
+                        }
+                    .portfolio .portfolio-container .gallery .project .description .links a {
+                        font-size: 20px;
+                        width: 36px;
+                        height: 36px;
+                        line-height: 35px;
+                        margin: 0 4px;
+                    }
+            .portfolio .portfolio-container .gallery .project .show:hover img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                transition: 0.25s;
+            }
+            .portfolio .portfolio-container .gallery .project .show:hover .description,
+            .portfolio .portfolio-container .gallery .project .description.show {
+                visibility: visible;
+                opacity: 1;
+                transition: visibility 0.25s linear,opacity 0.25s linear;
+            }
+
+            .project .show {
+                transition: transform 0.4s ease;
+            }
+
+            .project:nth-child(n+4) .show:hover {
+                /* Sube el elemento. Ajusta el % o los px según necesites */
+                transform: translateY(calc(var(--desc-height, 150px) * -1));
+            }
     
 
 @media screen and (min-width:1024px){
@@ -272,7 +294,6 @@ projectShow.forEach((p, i) => {
     }
     .portfolio .portfolio-container .gallery .project:nth-child(n+4) .show:hover {
         position: relative;
-        /*top: -24dvh;*/
         transition: 0.7s;
     }
 }
@@ -315,6 +336,10 @@ projectShow.forEach((p, i) => {
 @media screen and (max-width:480px){
     .portfolio .portfolio-container .gallery .project{
         max-width: 100%;
+    }
+
+    .project:nth-child(n+4) .show:hover {
+        transform: unset; 
     }
 }
 </style>
