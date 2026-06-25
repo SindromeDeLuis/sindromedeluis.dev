@@ -87,20 +87,24 @@ projectShow.forEach((p, i) => {
   <p>My recent work</p>
   <div class="portfolio-container">
     <div class="gallery" id="projects-gallery">
-      {projects.map((project) => (
+      {projects.map((project, i) => (
       <article class="project">
         <div class="show">
           <img src={`${projectsPath + project.preview}`} alt={project.name} loading="lazy" id="project-image">
             <div class="description">
-              <h3 id="project-name">{project.name}</h3>
-              <p id="project-subtitle">{project.subtitle}</p>
-              <ul id="project-technologies">
+              <h3 class="project-name">{project.name}</h3>
+              <p class="project-subtitle">{project.subtitle}</p>
+              <ul class="project-technologies">
                 {project.technologies.map((technology) => (
                   <li id={`${technology.toLowerCase()}`}>{technology}</li>
                 ))}
               </ul>
-              <div class="links" id="links">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" id="url"><i class="fa-brands fa-github"></i></a>
+              <div class="links">
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                )}
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" id="url2"><i class="fa-solid fa-globe"></i></a>
               </div>
             </div>
@@ -251,7 +255,8 @@ projectShow.forEach((p, i) => {
                     border-bottom-right-radius: 0;
                     transition: 0.25s;
                 }
-                .portfolio .portfolio-container .gallery .project .show:hover .description {
+                .portfolio .portfolio-container .gallery .project .show:hover .description,
+                .portfolio .portfolio-container .gallery .project .description.show {
                     visibility: visible;
                     opacity: 1;
                     transition: visibility 0.25s linear,opacity 0.25s linear;
@@ -298,9 +303,11 @@ projectShow.forEach((p, i) => {
             .portfolio .portfolio-container .gallery .project .description h3 {
                 font-size: 24px;
             }
-            .portfolio .portfolio-container .gallery .project .description p,
+            .portfolio .portfolio-container .gallery .project .description p {
+                font-size: 16px;
+            }
             .portfolio .portfolio-container .gallery .project .description ul li {
-                font-size: 20px;
+                font-size: 14px;
             }
 }
 

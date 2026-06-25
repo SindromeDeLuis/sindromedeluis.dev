@@ -73,3 +73,11 @@ h2 {
         overflow-y: scroll;
     }
 }
+
+/* Small devices (phones, 480px and down) */
+  @media screen and (max-width:480px){
+    .section {
+        min-height: unset;
+        padding-bottom: 20px;
+    }
+  }
